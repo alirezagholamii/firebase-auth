@@ -70,7 +70,7 @@ export default {
         await userCollection.add({
           name: name.value,
           age: +age.value,
-          email: age.email,
+          email: email.value,
         });
       } catch (e) {
         console.log(e);
