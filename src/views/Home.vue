@@ -48,7 +48,7 @@
 <script>
 // @ is an alias to /src
 import { ref } from "vue";
-import firebase from "../includes/firebase";
+import {auth} from "../includes/firebase";
 export default {
   name: "Home",
   setup() {
@@ -59,8 +59,7 @@ export default {
     const signup = async () => {
       console.log(email.value, "\n", password.value);
       try {
-        const userCred = await firebase
-          .auth()
+        const userCred = await auth
           .createUserWithEmailAndPassword(email.value, password.value);
         console.log(userCred);
         joined.value = true;
