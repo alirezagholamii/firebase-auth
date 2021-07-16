@@ -10,7 +10,7 @@ export default {
     return {};
   },
   created() {
-    console.log(this.$store.state.userLoggedIn);
+    this.$store.dispatch('initLogin')
   },
   computed: {
     msg() {

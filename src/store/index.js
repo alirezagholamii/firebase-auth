@@ -11,7 +11,18 @@ export default createStore({
     }
   },
   actions: {
-    async register({commit}, payload) {
+    async login({ commit }, payload) {
+      console.log(payload);
+      await auth.signInWithEmailAndPassword(payload.email,payload.password);
+      commit('toggleAuth')
+    },
+    initLogin({ commit }) {
+      const user = auth.currentUser;
+      if (user) {
+        commit('toggleAuth')
+      }
+    },
+    async register({ commit }, payload) {
       const userCred = await auth.createUserWithEmailAndPassword(
         payload.email,
         payload.password
