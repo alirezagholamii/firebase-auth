@@ -55,7 +55,7 @@
 
 <script>
 // @ is an alias to /src
-import { ref } from "vue";
+import { ref, computed  } from "vue";
 import { useStore } from "vuex";
 
 export default {
@@ -67,7 +67,10 @@ export default {
     const password = ref("");
     const name = ref("");
     const age = ref("");
-    const joined = ref(false);
+    const joined = computed (()=>{
+      return store.state.userLoggedIn
+    });
+    
     const signup = async () => {
       console.log(email.value, "\n", password.value);
       try {

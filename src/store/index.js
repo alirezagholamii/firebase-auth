@@ -12,15 +12,19 @@ export default createStore({
   },
   actions: {
     async register({commit}, payload) {
-      await auth.createUserWithEmailAndPassword(
+      const userCred = await auth.createUserWithEmailAndPassword(
         payload.email,
         payload.password
       );
-      await userCollection.add({
+      await userCollection.doc(userCred.user.uid).set({
         name: payload.name,
         age: +payload.age,
         email: payload.email,
       });
+
+      await userCred.user.updateProfile({
+        displayName: payload.name
+      })
       commit("toggleAuth");
 
     }
