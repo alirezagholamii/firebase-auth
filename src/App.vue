@@ -1,6 +1,14 @@
 <template>
   <div class="p-10 h-full w-full">
-    <p>user is logged in? {{ msg }}</p>
+    <div class="flex">
+      <a
+        @click.prevent="logout"
+        class="ml-auto cursor-pointer bg-green-400 px-2"
+        v-if="isLoggedIn"
+      >
+        Logout</a
+      >
+    </div>
     <router-view />
   </div>
 </template>
@@ -10,10 +18,15 @@ export default {
     return {};
   },
   created() {
-    this.$store.dispatch('initLogin')
+    this.$store.dispatch("initLogin");
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
+    },
   },
   computed: {
-    msg() {
+    isLoggedIn() {
       return this.$store.state.userLoggedIn;
     },
   },
