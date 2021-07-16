@@ -1,16 +1,30 @@
 <template>
-  <div
-    class=" p-10  h-full w-full"
-  >
+  <div class="p-10 h-full w-full">
+    <p>user is logged in? {{ msg }}</p>
     <router-view />
   </div>
 </template>
-
+<script>
+export default {
+  data() {
+    return {};
+  },
+  created() {
+    console.log(this.$store.state.userLoggedIn);
+  },
+  computed: {
+    msg() {
+      return this.$store.state.userLoggedIn;
+    },
+  },
+};
+</script>
 <style lang="scss">
-html,body {
+html,
+body {
   height: 100%;
 }
-#app{
-  @apply h-full bg-green-100 font-sans
+#app {
+  @apply h-full bg-green-100 font-sans;
 }
 </style>

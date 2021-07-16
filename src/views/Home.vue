@@ -56,36 +56,28 @@
 <script>
 // @ is an alias to /src
 import { ref } from "vue";
-import { auth, userCollection } from "../includes/firebase";
+import { useStore } from "vuex";
+
 export default {
   name: "Home",
   setup() {
+    const store = useStore();
+
     const email = ref("rrr@hotmail.com");
     const password = ref("");
     const name = ref("");
     const age = ref("");
     const joined = ref(false);
-    const addUser = async () => {
-      try {
-        await userCollection.add({
-          name: name.value,
-          age: +age.value,
-          email: email.value,
-        });
-      } catch (e) {
-        console.log(e);
-      }
-    };
     const signup = async () => {
       console.log(email.value, "\n", password.value);
       try {
-        const userCred = await auth.createUserWithEmailAndPassword(
-          email.value,
-          password.value
-        );
-        console.log(userCred);
-        joined.value = true;
-        addUser();
+        await store.dispatch("register", {
+          name: name.value,
+          password: password.value,
+          age: +age.value,
+          email: email.value,
+        });
+        // joined.value = true;
       } catch (e) {
         console.log(e);
       }
