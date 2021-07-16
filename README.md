@@ -20,10 +20,8 @@ npm run build
 npm run test:unit
 ```
 
-### Lints and fixes files
+### Demo 
 ```
-npm run lint
-```
+https://vue-auth-ce67f.web.app
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+```
